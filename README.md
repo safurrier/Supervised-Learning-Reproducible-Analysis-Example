@@ -1,23 +1,7 @@
-default-data-science-project
+ml7641-assignment-one
 ==============================
 
-A default project structure for data projects. Created with reproducibility and automation in mind.
-Data and script execution should be kept within the Make pipeline. 
-
-To start: set the 'project_name' variable in the config file. Then run the bash script to setup the 
-environment properly.
-
-> . ./setup_env.sh
-
-This will initialize a git repo and make a first commit. It will also create a conda environment and
-kernel with the name specified in the config file before installing dependencies.
-
-Be sure to uncomment lines:
-
-> /data/
-> reports/data-profiling/*
-
-From .gitignore file if data should be ignored in versioning
+Assignment for supervised learning ML 7641 Fall 2018 assignment 1
 
 To install various useful Jupyter Lab extensions, run:
 
@@ -83,7 +67,5 @@ Project Organization
     └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
 
 
-
-Much of the boilerplate code and structure for this comes from [Driven Data's Cookie Cutter Data Science](https://github.com/drivendata/cookiecutter-data-science)
 
 --------
