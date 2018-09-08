@@ -96,7 +96,7 @@ else
 endif
 
 ## Test python environment is setup correctly
-test_environment:
+test_environment: config.yaml
 	$(PYTHON_INTERPRETER) test_environment.py
 
 #################################################################################
