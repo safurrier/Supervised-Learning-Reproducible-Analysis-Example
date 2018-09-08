@@ -1,0 +1,13 @@
+Notes:
+
+Changes to code:
+* IterationLC jobs in Iteration to -1
+* Change output to /reports
+
+
+Plan:
+1) Alter the code so that it will run
+2) . Alter Makefile to Run Code. One for each script and one for all of them at once.
+3) Work through the results of each one
+4) Go hard on the analysis. Explain every hyper param. Graph in Notebooks and Export to PDF
+5) Cut down to 12 pages
