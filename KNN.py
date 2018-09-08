@@ -14,6 +14,8 @@ from sklearn.feature_selection import SelectFromModel
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=DataConversionWarning)
+
 
 
 def main():

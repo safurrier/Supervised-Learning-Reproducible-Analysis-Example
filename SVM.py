@@ -18,6 +18,8 @@ from sklearn.feature_selection import SelectFromModel
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
+warnings.simplefilter(action='ignore', category=DataConversionWarning)
+
 
 class primalSVM_RBF(BaseEstimator, ClassifierMixin):
     '''http://scikit-learn.org/stable/developers/contributing.html'''
