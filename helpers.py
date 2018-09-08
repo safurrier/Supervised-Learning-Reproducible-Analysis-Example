@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 20 13:55:38 2017
-
-@author: JTay
-"""
 import numpy as np
 from time import clock
 import sklearn.model_selection as ms
@@ -24,19 +19,19 @@ def basicResults(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     np.random.seed(55)
     if clf_type is None or dataset is None:
         raise
-    cv = ms.GridSearchCV(clfObj,n_jobs=1,param_grid=params,refit=True,verbose=10,cv=5,scoring=scorer)
+    cv = ms.GridSearchCV(clfObj,n_jobs=-1,param_grid=params,refit=True,verbose=10,cv=5,scoring=scorer)
     cv.fit(trgX,trgY)
     regTable = pd.DataFrame(cv.cv_results_)
-    regTable.to_csv('./output/{}_{}_reg.csv'.format(clf_type,dataset),index=False)
+    regTable.to_csv('reports/output/{}_{}_reg.csv'.format(clf_type,dataset),index=False)
     test_score = cv.score(tstX,tstY)
-    with open('./output/test results.csv','a') as f:
+    with open('reports/output/test results.csv','a') as f:
         f.write('{},{},{},{}\n'.format(clf_type,dataset,test_score,cv.best_params_))    
     N = trgY.shape[0]    
     curve = ms.learning_curve(cv.best_estimator_,trgX,trgY,cv=5,train_sizes=[50,100]+[int(N*x/10) for x in range(1,8)],verbose=10,scoring=scorer)
     curve_train_scores = pd.DataFrame(index = curve[0],data = curve[1])
     curve_test_scores  = pd.DataFrame(index = curve[0],data = curve[2])
-    curve_train_scores.to_csv('./output/{}_{}_LC_train.csv'.format(clf_type,dataset))
-    curve_test_scores.to_csv('./output/{}_{}_LC_test.csv'.format(clf_type,dataset))
+    curve_train_scores.to_csv('reports/output/{}_{}_LC_train.csv'.format(clf_type,dataset))
+    curve_test_scores.to_csv('reports/output/{}_{}_LC_test.csv'.format(clf_type,dataset))
     return cv
 
     
@@ -47,7 +42,7 @@ def iterationLC(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     cv = ms.GridSearchCV(clfObj,n_jobs=1,param_grid=params,refit=True,verbose=10,cv=5,scoring=scorer)
     cv.fit(trgX,trgY)
     regTable = pd.DataFrame(cv.cv_results_)
-    regTable.to_csv('./output/ITER_base_{}_{}.csv'.format(clf_type,dataset),index=False)
+    regTable.to_csv('reports/output/ITER_base_{}_{}.csv'.format(clf_type,dataset),index=False)
     d = defaultdict(list)
     name = list(params.keys())[0]
     for value in list(params.values())[0]:        
@@ -61,7 +56,7 @@ def iterationLC(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
         d['test acc'].append(balanced_accuracy(tstY,pred))
         print(value)
     d = pd.DataFrame(d)
-    d.to_csv('./output/ITERtestSET_{}_{}.csv'.format(clf_type,dataset),index=False)
+    d.to_csv('reports/output/ITERtestSET_{}_{}.csv'.format(clf_type,dataset),index=False)
     return cv    
     
 def add_noise(y,frac=0.1):
@@ -87,7 +82,7 @@ def makeTimingCurve(X,Y,clf,clfName,dataset):
         out['test'][frac]= clock()-st
         print(clfName,dataset,frac)
     out = pd.DataFrame(out)
-    out.to_csv('./output/{}_{}_timing.csv'.format(clfName,dataset))
+    out.to_csv('reports/output/{}_{}_timing.csv'.format(clfName,dataset))
     return 
         
         
