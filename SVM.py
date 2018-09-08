@@ -1,10 +1,5 @@
 
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 20 14:23:40 2017
-
-@author: JTay
-"""
 
 import numpy as np
 import sklearn.model_selection as ms
@@ -70,11 +65,11 @@ class primalSVM_RBF(BaseEstimator, ClassifierMixin):
 
 
 
-adult = pd.read_hdf('datasets.hdf','adult')        
+adult = pd.read_hdf('data/processed/datasets.hdf','adult')        
 adultX = adult.drop('income',1).copy().values
 adultY = adult['income'].copy().values
 
-madelon = pd.read_hdf('datasets.hdf','madelon')        
+madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
 madelonX = madelon.drop('Class',1).copy().values
 madelonY = madelon['Class'].copy().values
 
@@ -88,43 +83,43 @@ alphas = [10**-x for x in np.arange(1,9.01,1/2)]
 
 
 #Linear SVM
-#pipeM = Pipeline([('Scale',StandardScaler()),
-#                 ('Cull1',SelectFromModel(RandomForestClassifier(random_state=1),threshold='median')),
-#                 ('Cull2',SelectFromModel(RandomForestClassifier(random_state=2),threshold='median')),
-#                 ('Cull3',SelectFromModel(RandomForestClassifier(random_state=3),threshold='median')),
-#                 ('Cull4',SelectFromModel(RandomForestClassifier(random_state=4),threshold='median')),
-#                 ('SVM',SGDClassifier(loss='hinge',l1_ratio=0,penalty='l2',class_weight='balanced',random_state=55))])
-#pipeA = Pipeline([('Scale',StandardScaler()),                
-#                 ('SVM',SGDClassifier(loss='hinge',l1_ratio=0,penalty='l2',class_weight='balanced',random_state=55))])
-#
-#params_adult = {'SVM__alpha':alphas,'SVM__n_iter':[int((1e6/N_adult)/.8)+1]}
-#params_madelon = {'SVM__alpha':alphas,'SVM__n_iter':[int((1e6/N_madelon)/.8)+1]}
-#                                                  
-#madelon_clf = basicResults(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,params_madelon,'SVM_Lin','madelon')        
-#adult_clf = basicResults(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,params_adult,'SVM_Lin','adult')        
-#
-##madelon_final_params = {'SVM__alpha': 0.031622776601683791, 'SVM__n_iter': 687.25}
-#madelon_final_params = madelon_clf.best_params_
-#madelon_OF_params = {'SVM__n_iter': 1303, 'SVM__alpha': 1e-16}
-##adult_final_params ={'SVM__alpha': 0.001, 'SVM__n_iter': 54.75}
-#adult_final_params =adult_clf.best_params_
-#adult_OF_params ={'SVM__n_iter': 55, 'SVM__alpha': 1e-16}
-#
-#
-#pipeM.set_params(**madelon_final_params)                     
-#makeTimingCurve(madelonX,madelonY,pipeM,'SVM_Lin','madelon')
-#pipeA.set_params(**adult_final_params)
-#makeTimingCurve(adultX,adultY,pipeA,'SVM_Lin','adult')
-#
-#pipeM.set_params(**madelon_final_params)
-#iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'SVM__n_iter':[2**x for x in range(12)]},'SVM_Lin','madelon')        
-#pipeA.set_params(**adult_final_params)
-#iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'SVM__n_iter':np.arange(1,75,3)},'SVM_Lin','adult')                
-#
-#pipeA.set_params(**adult_OF_params)
-#iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'SVM__n_iter':np.arange(1,200,5)},'SVM_LinOF','adult')                
-#pipeM.set_params(**madelon_OF_params)
-#iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'SVM__n_iter':np.arange(100,2600,100)},'SVM_LinOF','madelon')                
+pipeM = Pipeline([('Scale',StandardScaler()),
+                ('Cull1',SelectFromModel(RandomForestClassifier(random_state=1),threshold='median')),
+                ('Cull2',SelectFromModel(RandomForestClassifier(random_state=2),threshold='median')),
+                ('Cull3',SelectFromModel(RandomForestClassifier(random_state=3),threshold='median')),
+                ('Cull4',SelectFromModel(RandomForestClassifier(random_state=4),threshold='median')),
+                ('SVM',SGDClassifier(loss='hinge',l1_ratio=0,penalty='l2',class_weight='balanced',random_state=55))])
+pipeA = Pipeline([('Scale',StandardScaler()),                
+                ('SVM',SGDClassifier(loss='hinge',l1_ratio=0,penalty='l2',class_weight='balanced',random_state=55))])
+
+params_adult = {'SVM__alpha':alphas,'SVM__n_iter':[int((1e6/N_adult)/.8)+1]}
+params_madelon = {'SVM__alpha':alphas,'SVM__n_iter':[int((1e6/N_madelon)/.8)+1]}
+                                                 
+madelon_clf = basicResults(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,params_madelon,'SVM_Lin','madelon')        
+adult_clf = basicResults(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,params_adult,'SVM_Lin','adult')        
+
+#madelon_final_params = {'SVM__alpha': 0.031622776601683791, 'SVM__n_iter': 687.25}
+madelon_final_params = madelon_clf.best_params_
+madelon_OF_params = {'SVM__n_iter': 1303, 'SVM__alpha': 1e-16}
+#adult_final_params ={'SVM__alpha': 0.001, 'SVM__n_iter': 54.75}
+adult_final_params =adult_clf.best_params_
+adult_OF_params ={'SVM__n_iter': 55, 'SVM__alpha': 1e-16}
+
+
+pipeM.set_params(**madelon_final_params)                     
+makeTimingCurve(madelonX,madelonY,pipeM,'SVM_Lin','madelon')
+pipeA.set_params(**adult_final_params)
+makeTimingCurve(adultX,adultY,pipeA,'SVM_Lin','adult')
+
+pipeM.set_params(**madelon_final_params)
+iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'SVM__n_iter':[2**x for x in range(12)]},'SVM_Lin','madelon')        
+pipeA.set_params(**adult_final_params)
+iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'SVM__n_iter':np.arange(1,75,3)},'SVM_Lin','adult')                
+
+pipeA.set_params(**adult_OF_params)
+iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'SVM__n_iter':np.arange(1,200,5)},'SVM_LinOF','adult')                
+pipeM.set_params(**madelon_OF_params)
+iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'SVM__n_iter':np.arange(100,2600,100)},'SVM_LinOF','madelon')                
 
 
 

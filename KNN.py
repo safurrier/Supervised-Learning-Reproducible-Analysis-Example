@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 20 15:42:58 2017
 
-@author: JTay
-"""
 
 import numpy as np
 import sklearn.model_selection as ms
@@ -17,11 +13,11 @@ from sklearn.feature_selection import SelectFromModel
 
 
 
-adult = pd.read_hdf('datasets.hdf','adult')        
+adult = pd.read_hdf('data/processed/datasets.hdf','adult')        
 adultX = adult.drop('income',1).copy().values
 adultY = adult['income'].copy().values
 
-madelon = pd.read_hdf('datasets.hdf','madelon')        
+madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
 madelonX = madelon.drop('Class',1).copy().values
 madelonY = madelon['Class'].copy().values
 

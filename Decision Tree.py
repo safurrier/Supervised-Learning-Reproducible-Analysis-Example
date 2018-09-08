@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 18 11:55:32 2017
 
 Script for full tests, decision tree (pruned)
 
@@ -25,7 +24,7 @@ def DTpruningVSnodes(clf,alphas,trgX,trgY,dataset):
     out = pd.Series(out)
     out.index.name='alpha'
     out.name = 'Number of Internal Nodes'
-    out.to_csv('./output/DT_{}_nodecounts.csv'.format(dataset))
+    out.to_csv('reports/output/DT_{}_nodecounts.csv'.format(dataset))
     
     return
 
@@ -34,13 +33,13 @@ def DTpruningVSnodes(clf,alphas,trgX,trgY,dataset):
     
 
 # Load Data       
-adult = pd.read_hdf('datasets.hdf','adult')        
+adult = pd.read_hdf('data/processed/datasets.hdf','adult')        
 adultX = adult.drop('income',1).copy().values
 adultY = adult['income'].copy().values
 
 
 
-madelon = pd.read_hdf('datasets.hdf','madelon')        
+madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
 madelonX = madelon.drop('Class',1).copy().values
 madelonY = madelon['Class'].copy().values
 
