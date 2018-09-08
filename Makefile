@@ -29,6 +29,29 @@ requirements: test_environment
 data: requirements
 	$(PYTHON_INTERPRETER) load_and_process_data.py
 
+## Run Analysis Scripts
+ann: data
+	$(PYTHON_INTERPRETER) ANN.py	
+
+boosting: data
+	$(PYTHON_INTERPRETER) Boosting.py
+
+decision_tree: data
+	$(PYTHON_INTERPRETER) Decision Tree.py	
+	
+knn: data
+	$(PYTHON_INTERPRETER) KNN.py	
+
+svm: data
+	$(PYTHON_INTERPRETER) SVM.py	
+
+analysis: data
+	$(PYTHON_INTERPRETER) ANN.py
+	$(PYTHON_INTERPRETER) Boosting.py
+	$(PYTHON_INTERPRETER) Decision Tree.py
+	$(PYTHON_INTERPRETER) KNN.py
+	$(PYTHON_INTERPRETER) SVM.py
+	
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
