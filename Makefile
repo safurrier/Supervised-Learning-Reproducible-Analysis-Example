@@ -37,7 +37,7 @@ boosting: data
 	$(PYTHON_INTERPRETER) Boosting.py
 
 decision_tree: data
-	$(PYTHON_INTERPRETER) Decision Tree.py	
+	$(PYTHON_INTERPRETER) Decision_Tree.py	
 	
 knn: data
 	$(PYTHON_INTERPRETER) KNN.py	
@@ -48,7 +48,7 @@ svm: data
 analysis: data
 	$(PYTHON_INTERPRETER) ANN.py
 	$(PYTHON_INTERPRETER) Boosting.py
-	$(PYTHON_INTERPRETER) Decision Tree.py
+	$(PYTHON_INTERPRETER) Decision_Tree.py
 	$(PYTHON_INTERPRETER) KNN.py
 	$(PYTHON_INTERPRETER) SVM.py
 	
