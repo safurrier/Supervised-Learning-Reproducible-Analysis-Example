@@ -13,6 +13,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 import warnings
+from sklearn.exceptions import DataConversionWarning
 warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.simplefilter(action='ignore', category=DataConversionWarning)
 
@@ -24,7 +25,7 @@ def main():
     adultX = adult.drop('income',1).copy().values
     adultY = adult['income'].copy().values
 
-    madelon = pd.read_hdf(data/processed/'datasets.hdf','madelon')        
+    madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
     madelonX = madelon.drop('Class',1).copy().values
     madelonY = madelon['Class'].copy().values
 
