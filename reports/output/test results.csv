@@ -27,3 +27,15 @@ DT,cars,0.9834710743801653,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT_
 DT,cars,0.9834710743801653,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
 DT,cars,0.9555064500716675,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
 DT,abalone,0.7951224165341814,{'DT__alpha': 0.01, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+DT,madelon,0.8102564102564103,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+DT,abalone,0.7951224165341814,{'DT__alpha': 0.01, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+KNN,madelon,0.8525641025641025,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 7, 'KNN__weights': 'distance'}
+Boost,madelon,0.8269230769230769,{'Boost__base_estimator__alpha': -0.001, 'Boost__n_estimators': 5}
+KNN,madelon,0.8525641025641025,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 13, 'KNN__weights': 'distance'}
+KNN,abalone,0.7887885532591415,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 40, 'KNN__weights': 'distance'}
+KNN,abalone,0.7887885532591415,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 40, 'KNN__weights': 'distance'}
+Boost,abalone,0.7919224165341813,{'Boost__base_estimator__alpha': 0.0316227766016838, 'Boost__n_estimators': 5}
+ANN,madelon,0.7628205128205128,{'MLP__activation': 'relu', 'MLP__alpha': 0.0001, 'MLP__hidden_layer_sizes': (62, 62, 62)}
+ANN,abalone,0.7539192368839429,{'MLP__activation': 'relu', 'MLP__alpha': 10.0, 'MLP__hidden_layer_sizes': (10, 10, 10)}
+ANN,madelon,0.7628205128205128,{'MLP__activation': 'relu', 'MLP__alpha': 0.0001, 'MLP__hidden_layer_sizes': (62, 62, 62)}
+ANN,abalone,0.7539192368839429,{'MLP__activation': 'relu', 'MLP__alpha': 10.0, 'MLP__hidden_layer_sizes': (10, 10, 10)}

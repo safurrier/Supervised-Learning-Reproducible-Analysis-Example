@@ -21,9 +21,9 @@ warnings.simplefilter(action='ignore', category=DataConversionWarning)
 
 def main():
 
-    adult = pd.read_hdf('data/processed/datasets.hdf','adult')        
-    adultX = adult.drop('income',1).copy().values
-    adultY = adult['income'].copy().values
+    abalone = pd.read_hdf('data/processed/datasets.hdf','abalone')        
+    abaloneX = abalone.drop('Class',1).copy().values
+    abaloneY = abalone['Class'].copy().values
 
     madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
     madelonX = madelon.drop('Class',1).copy().values
@@ -32,13 +32,13 @@ def main():
     alphas = [-1,-1e-3,-(1e-3)*10**-0.5, -1e-2, -(1e-2)*10**-0.5,-1e-1,-(1e-1)*10**-0.5, 0, (1e-1)*10**-0.5,1e-1,(1e-2)*10**-0.5,1e-2,(1e-3)*10**-0.5,1e-3]
 
 
-    adult_trgX, adult_tstX, adult_trgY, adult_tstY = ms.train_test_split(adultX, adultY, test_size=0.3, random_state=0,stratify=adultY)     
+    abalone_trgX, abalone_tstX, abalone_trgY, abalone_tstY = ms.train_test_split(abaloneX, abaloneY, test_size=0.3, random_state=0,stratify=abaloneY)     
     madelon_trgX, madelon_tstX, madelon_trgY, madelon_tstY = ms.train_test_split(madelonX, madelonY, test_size=0.3, random_state=0,stratify=madelonY)     
 
 
 
     madelon_base = dtclf_pruned(criterion='gini',class_weight='balanced',random_state=55)                
-    adult_base = dtclf_pruned(criterion='entropy',class_weight='balanced',random_state=55)
+    abalone_base = dtclf_pruned(criterion='entropy',class_weight='balanced',random_state=55)
     OF_base = dtclf_pruned(criterion='gini',class_weight='balanced',random_state=55)                
     #paramsA= {'Boost__n_estimators':[1,2,5,10,20,30,40,50],'Boost__learning_rate':[(2**x)/100 for x in range(8)]+[1]}
     paramsA= {'Boost__n_estimators':[1,2,5,10,20,30,45,60,80,100],
@@ -51,7 +51,7 @@ def main():
 
 
     madelon_booster = AdaBoostClassifier(algorithm='SAMME',learning_rate=1,base_estimator=madelon_base,random_state=55)
-    adult_booster = AdaBoostClassifier(algorithm='SAMME',learning_rate=1,base_estimator=adult_base,random_state=55)
+    abalone_booster = AdaBoostClassifier(algorithm='SAMME',learning_rate=1,base_estimator=abalone_base,random_state=55)
     OF_booster = AdaBoostClassifier(algorithm='SAMME',learning_rate=1,base_estimator=OF_base,random_state=55)
 
     pipeM = Pipeline([('Scale',StandardScaler()),
@@ -62,36 +62,36 @@ def main():
                      ('Boost',madelon_booster)])
 
     pipeA = Pipeline([('Scale',StandardScaler()),                
-                     ('Boost',adult_booster)])
+                     ('Boost',abalone_booster)])
 
     #
     madelon_clf = basicResults(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,paramsM,'Boost','madelon')        
-    adult_clf = basicResults(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,paramsA,'Boost','adult')        
+    abalone_clf = basicResults(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,paramsA,'Boost','abalone')        
 
     #
     #
     #madelon_final_params = {'n_estimators': 20, 'learning_rate': 0.02}
-    #adult_final_params = {'n_estimators': 10, 'learning_rate': 1}
+    #abalone_final_params = {'n_estimators': 10, 'learning_rate': 1}
     #OF_params = {'learning_rate':1}
 
     madelon_final_params = madelon_clf.best_params_
-    adult_final_params = adult_clf.best_params_
+    abalone_final_params = abalone_clf.best_params_
     OF_params = {'Boost__base_estimator__alpha':-1, 'Boost__n_estimators':50}
 
     ##
     pipeM.set_params(**madelon_final_params)
-    pipeA.set_params(**adult_final_params)
+    pipeA.set_params(**abalone_final_params)
     makeTimingCurve(madelonX,madelonY,pipeM,'Boost','madelon')
-    makeTimingCurve(adultX,adultY,pipeA,'Boost','adult')
+    makeTimingCurve(abaloneX,abaloneY,pipeA,'Boost','abalone')
     #
     pipeM.set_params(**madelon_final_params)
     iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50,60,70,80,90,100]},'Boost','madelon')        
-    pipeA.set_params(**adult_final_params)
-    iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50]},'Boost','adult')                
+    pipeA.set_params(**abalone_final_params)
+    iterationLC(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50]},'Boost','abalone')                
     pipeM.set_params(**OF_params)
     iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50,60,70,80,90,100]},'Boost_OF','madelon')                
     pipeA.set_params(**OF_params)
-    iterationLC(pipeA,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50]},'Boost_OF','adult')                
+    iterationLC(pipeA,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'Boost__n_estimators':[1,2,5,10,20,30,40,50]},'Boost_OF','abalone')                
 
 if __name__ == "__main__":
     main()
