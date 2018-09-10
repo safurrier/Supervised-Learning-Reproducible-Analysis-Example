@@ -200,13 +200,17 @@ column_names = ["Sex",
 
 abalone_df = pd.read_csv('data/raw/abalone/abalone.txt', names=column_names)
 
-# Create Binary classification problem based on Rings, which are a function of age (Age = 1.5 + Rings)
-abalone_df['Class'] = np.where(abalone_df['Rings'] > 9, 1, 0)
+# Create classification problem based on Rings, which are a function of age (Age = 1.5 + Rings)
+#abalone_df['Class'] = np.where(abalone_df['Rings'] > 9, 1, 0) Binary Classification
+
+# Multilabel classification
+# Infants, Most prevalent age (9-10) before harvesting
+# Full adults
+abalone_df['Class'] = pd.cut(abalone_df['Rings'], bins=[-1, 8.9, 10.1, 100], labels=[0, 1, 2])
 
 # One hot encode gender and concat together
 abalone_df = pd.concat([pd.get_dummies(abalone_df['Sex'], prefix='Sex'), 
                        abalone_df.drop(columns=['Sex', 'Rings'], axis=1)], axis=1)
 
 # Export data
-abalone_df.to_hdf('data/processed/datasets.hdf','abalone',complib='blosc',complevel=9)
-
+abalone_df.to_hdf('data/processed/datasets.hdf','abalone', format='table', complib='blosc',complevel=9)
