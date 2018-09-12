@@ -206,7 +206,7 @@ abalone_df = pd.read_csv('data/raw/abalone/abalone.txt', names=column_names)
 # Multilabel classification
 # Infants, Most prevalent age (9-10) before harvesting
 # Full adults
-abalone_df['Class'] = pd.cut(abalone_df['Rings'], bins=[-1, 8.9, 10.1, 100], labels=[0, 1, 2])
+abalone_df['Class'] = pd.cut(abalone_df['Rings'], bins=[-1, 8.9, 10.1, 100], labels=[0, 1, 2]).astype(int)
 
 # One hot encode gender and concat together
 abalone_df = pd.concat([pd.get_dummies(abalone_df['Sex'], prefix='Sex'), 

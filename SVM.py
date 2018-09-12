@@ -108,7 +108,7 @@ def main():
     #madelon_final_params = {'SVM__alpha': 0.031622776601683791, 'SVM__n_iter': 687.25}
     madelon_final_params = madelon_clf.best_params_
     madelon_OF_params = {'SVM__n_iter': 1303, 'SVM__alpha': 1e-16}
-    #abalone_final_params ={'SVM__alpha': 0.001, 'SVM__n_iter': 54.75}
+    #abalone_final_params ={'SVM__alpha': 0.0001, 'SVM__n_iter': 428}
     abalone_final_params =abalone_clf.best_params_
     abalone_OF_params ={'SVM__n_iter': 55, 'SVM__alpha': 1e-16}
 

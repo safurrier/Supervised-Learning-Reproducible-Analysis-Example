@@ -1,0 +1,13 @@
+Algorithm,Dataset,Score,Hyperparameters,,,,
+ANN,madelon,0.762820513,{'MLP__activation': 'relu', 'MLP__alpha': 0.0001, 'MLP__hidden_layer_sizes': (62,62, 62)}
+ANN,abalone,0.621137929,{'MLP__activation': 'relu', 'MLP__alpha': 1.0, 'MLP__hidden_layer_sizes': (20,20, 20)}
+Boost,madelon,0.826923077,{'Boost__base_estimator__alpha': -0.001, 'Boost__n_estimators': 5},,,
+Boost,abalone,0.628263286,{'Boost__base_estimator__alpha': 0.0316227766016838, 'Boost__n_estimators': 20},,,
+DT,madelon,0.81025641,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'},,
+DT,abalone,0.618223327,{'DT__alpha': 0.01, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'},,
+KNN,madelon,0.864102564,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 10, 'KNN__weights': 'distance'},,
+KNN,abalone,0.628263418,{'KNN__metric': 'chebyshev', 'KNN__n_neighbors': 34, 'KNN__weights': 'distance'},,
+SVM_Lin,madelon,0.601282051,{'SVM__alpha': 0.1, 'SVM__n_iter': 687},,,
+SVM_Lin,abalone,0.622048176,{'SVM__alpha': 0.0001, 'SVM__n_iter': 428},,,
+SVM_RBF,madelon,0.837179487,{'SVM__alpha': 0.00031622776601683794, 'SVM__gamma_frac': 0.15000000000000002, 'SVM__n_iter': 687},,
+SVM_RBF,abalone,0.633859757,{'SVM__alpha': 0.0031622776601683794, 'SVM__gamma_frac': 0.2, 'SVM__n_iter': 428},,
