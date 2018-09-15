@@ -1,0 +1,30 @@
+*Assignment 1 Summary*
+Design two interesting classification problems.
+Provide a maximum 12 page report detailing your problems and implementation of five simple learning algorithms (as shown below).
+
+Describe the classification problems, and why you feel that they are interesting.  The problems should be non-trivial , but capable of admitting comparisons and analysis of the various algorithms
+
+"Implement" the learning algorithms.
+Do some fiddling to get good results, graphs and such.  Feel free to use software packages that you find elsewhere.
+Document/discuss/provide:
+- the training and testing error rates you obtained running the various learning algorithms on your problems.
+- learning curve graphs that show performance on both training and test data as a function of:
+- - training size
+- - (for algorithms that are iterative) training times/iterations .
+- written analysis of your results. Your explanations should be both thorough and concise
+- proper attribution for software packages used.
+
+*Decision Trees*. Use some form of pruning. You are not required to use information gain (for example, there is something called the GINI index that is sometimes used) to split attributes, but you should describe whatever it is that you do use.
+*Neural Networks*. Implement your favorite kind of network and training algorithm. You may use networks of nodes with as many layers as you like and any activation function you see fit.
+*Boosting*. Implement a boosted version of your decision trees. As before, you will want to use some form of pruning, but presumably because you're using boosting you can afford to be much more aggressive.
+*Support Vector Machines*. Implement SVMs. This should be done in such a way that you can swap out kernel functions. I'd like to see at least two.
+*k-Nearest Neighbors*. Implement kNN. Use different values of k.
+
+*Submit*:
+- a tar or zip file named *yourgtaccount.{zip,tar,tar.gz}* containing:
+- - a single folder or directory named *yourgtaccount* which in turn contains:
+- - - a file named *README.txt* containing instructions for running your code (see note below)
+- - - your *code* (see note below)
+- - - a file named *yourgtaccount-analysis.pdf* containing your writeup
+- - - any supporting files you need, such as your *training and test sets* (see note below).
+Note below: if the data or code are too huge for submitting, see if you can arrange for an URL. You should at least submit any files you found necessary to change and enough support and explanation so we could reproduce your results if we really wanted to do so. In any case, include all the information in README.txt

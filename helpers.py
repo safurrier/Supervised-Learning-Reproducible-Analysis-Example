@@ -46,7 +46,7 @@ def iterationLC(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     d = defaultdict(list)
     name = list(params.keys())[0]
     for value in list(params.values())[0]:        
-        d['param_{}'.format(name)].append(value)
+        d['param_{}'.format(name)].append(value) 
         clfObj.set_params(**{name:value})
         clfObj.fit(trgX,trgY)
         pred = clfObj.predict(trgX)
