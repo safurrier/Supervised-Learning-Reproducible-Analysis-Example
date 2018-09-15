@@ -1,0 +1,17 @@
+Dataset,Algorithm,Hyperparameters,Number_Of_Iterations
+abalone,ANN,Best_Params,64
+abalone,Boost,Best_Params,20
+abalone,SVMLin,Best_Params,49
+abalone,SVMRBF,Best_Params,64
+madelon,ANN,Best_Params,32
+madelon,Boost,Best_Params,5
+madelon,SVMLin,Best_Params,16
+madelon,SVMRBF,Best_Params,128
+abalone,ANN,No_Regularization,32
+abalone,Boost,No_Regularization,1
+abalone,SVMLin,No_Regularization,51
+abalone,SVMRBF,No_Regularization,37
+madelon,ANN,No_Regularization,32
+madelon,Boost,No_Regularization,1
+madelon,SVMLin,No_Regularization,200
+madelon,SVMRBF,No_Regularization,100
