@@ -500,8 +500,8 @@ the expressivenes to describe non-linear patterns, e.g.~a linear SVM,
 may struggle on the dataset while others, e.g.~an SVM with RBF kernel,
 may have improved performance.
 
-    \hypertarget{algorithms}{%
-\subsection{Algorithms}\label{algorithms}}
+    \hypertarget{algorithms-methodology}{%
+\subsection{Algorithms \& Methodology}\label{algorithms-methodology}}
 
     All algorithms were implemented via the python machine learning package
 sci-kit learn.
@@ -514,7 +514,8 @@ its performance and wall clock time recorded to illustrate its learning
 curve and computation cost. The variance or `overfit-ablility' of the
 iterative learners (ANN, Boosting, SVMs) was tested by measuring the
 train and test accuracy across an increasing number of iterations using
-hyper parameters with high expressiveness
+hyper parameters with high expressiveness (i.e.~regularization
+parameters set to very low values)
 
 \hypertarget{artificial-neural-network}{%
 \paragraph{Artificial Neural Network}\label{artificial-neural-network}}
@@ -543,8 +544,170 @@ Weighting of Neighbours Method}
 \hypertarget{svm}{%
 \paragraph{SVM}\label{svm}}
 
-*Hyper Parameters Searched: Kernel (Linear, RBF), Learning Rate, Number
-of Iterations
+\emph{Hyper Parameters Searched: Kernel (Linear, RBF), Learning Rate,
+Number of Iterations}
+
+    \hypertarget{algorithm-analysis}{%
+\subsection{Algorithm Analysis}\label{algorithm-analysis}}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Discussion: Algorithms Analysis
+
+  \begin{itemize}
+  \tightlist
+  \item
+    For each algorithm:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Train/Test Error Rates
+
+      \begin{itemize}
+      \tightlist
+      \item
+        At the end if there's enough time, might want to add precision,
+        recall, f1 score as metrics on best hyper param models
+      \end{itemize}
+    \item
+      Training Time
+    \item
+      Learning Rate
+    \item
+      `Overfitting' Curves (Expressiveness)
+    \item
+      Hyperparameter Analysis
+
+      \begin{itemize}
+      \tightlist
+      \item
+        Why did these come out the best? Discuss what each parameter
+        does and reasoning for why that performed best. Look at Grid
+        search results if possible to see if distribution of params
+        change the outcome much (i.e.~the effect of param on
+        performance)
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{artificial-neural-network}{%
+\paragraph{Artificial Neural Network}\label{artificial-neural-network}}
+
+    \hypertarget{alg}{%
+\paragraph{Alg}\label{alg}}
+
+\emph{Abalone Best 5 Fold CV Score:}
+
+\emph{Hyperparameters Selected:} - - -
+
+\emph{Madelon Best 5 Fold CV Score:}
+
+\emph{Hyperparameters Selected:} - - -
+
+\emph{Learning Curve}
+
+\emph{Timing Curve}
+
+\emph{`Overfitting' Curve}
+
+    \hypertarget{artificial-neural-network}{%
+\paragraph{Artificial Neural Network}\label{artificial-neural-network}}
+
+\hypertarget{section}{%
+\paragraph{}\label{section}}
+
+\emph{Abalone Best 5 Fold CV Score:}
+
+\textbf{.6211}
+
+\emph{Hyperparameters Selected}
+
+\begin{itemize}
+\item
+  Activation Function: Relu
+\item
+  Learning Rate: .1
+\item
+  Hidden Layer Size: (20, 20, 20)
+\end{itemize}
+
+\emph{Madelon Best 5 Fold CV Score:}
+
+\textbf{0.7628}
+
+\emph{Hyperparameters Selected:}
+
+\begin{itemize}
+\item
+  Activation Function: Relu
+\item
+  Learning Rate: .0001
+\item
+  Hidden Layer Size: (62, 62, 62)
+\end{itemize}
+
+\emph{Learning Curve}
+
+\emph{Timing Curve}
+
+\emph{`Overfitting' Curve}
+
+    \hypertarget{decision-tree}{%
+\paragraph{Decision Tree}\label{decision-tree}}
+
+\emph{Abalone Best 5 Fold CV Score:} \textbf{0.6182}
+
+\emph{Hyperparameters Selected:}
+
+\begin{verbatim}
+- Learning Rate: 0.01
+- Class Weigh: Balanced
+- Splitting Criteria: Gini
+\end{verbatim}
+
+\emph{Madelon Best 5 Fold CV Score:}
+
+\emph{Hyperparameters Selected:} \textbf{0.8102}
+
+\begin{verbatim}
+- Learning Rate: 0
+- Class Weigh: Balanced
+- Splitting Criteria: Gini
+\end{verbatim}
+
+\emph{Learning Curve}
+
+\emph{Timing Curve}
+
+\emph{`Overfitting' Curve}
+
+    \hypertarget{boosting}{%
+\paragraph{Boosting}\label{boosting}}
+
+\emph{Abalone Best 5 Fold CV Score:} \textbf{0.6282}
+
+\emph{Hyperparameters Selected:}
+
+\begin{verbatim}
+- Base Decision Tree Learning Rate
+-
+-
+\end{verbatim}
+
+\emph{Madelon Best 5 Fold CV Score:}
+
+\emph{Hyperparameters Selected:} - - -
+
+\emph{Learning Curve}
+
+\emph{Timing Curve}
+
+\emph{`Overfitting' Curve}
 
 
     % Add a bibliography block to the postdoc

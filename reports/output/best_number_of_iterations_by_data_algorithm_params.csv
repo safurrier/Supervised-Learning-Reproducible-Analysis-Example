@@ -1,4 +1,4 @@
-Dataset,Algorithm,Hyperparameters,Number_Of_Iterations
+Dataset,Algorithm,Hyperparameters,Best_Number_of_Iterations/Estimators
 abalone,ANN,Best_Params,64
 abalone,Boost,Best_Params,20
 abalone,SVMLin,Best_Params,49

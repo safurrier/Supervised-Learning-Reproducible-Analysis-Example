@@ -35,7 +35,7 @@ class AlgorithmResults(object):
         
     @property
     def plot_learning_curve(self, 
-                            x=alt.X('Iterations:Q'), 
+                            x=alt.X('Datapoints:Q'), 
                             y=alt.Y('CV_Mean:Q', scale=alt.Scale(domain=[0.0, 1.0])),
                            color=alt.Color('Split:N')):
         """ Plot the learning curve of the algorithm and dataset"""
@@ -132,10 +132,10 @@ def tidy_learning_curve(base_df, split=None, dataset=None, algorithm=None):
     'Split must be "Train" or "Test"'
     CV_cols = ['CV_1', 'CV_2', 'CV_3', 'CV_4', 'CV_5']
     tidy_df = base_df.copy()
-    tidy_df.columns = ['Iterations'] + CV_cols
+    tidy_df.columns = ['Data_Points'] + CV_cols
     tidy_df['CV_Mean'] = tidy_df[CV_cols].mean(axis=1)
     tidy_df['Split'] = split
-    tidy_df[['Iterations', 'Split', 'CV_Mean']]
+    tidy_df[['Data_Points', 'Split', 'CV_Mean']]
     
     # Optionally add algorithm and dataset
     if algorithm:
