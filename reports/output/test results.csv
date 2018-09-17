@@ -51,3 +51,21 @@ SVM_RBF,madelon,0.8371794871794872,{'SVM__alpha': 0.00031622776601683794, 'SVM__
 ANN,madelon,0.7628205128205128,{'MLP__activation': 'relu', 'MLP__alpha': 0.0001, 'MLP__hidden_layer_sizes': (62, 62, 62)}
 ANN,abalone,0.6211379292506624,{'MLP__activation': 'relu', 'MLP__alpha': 1.0, 'MLP__hidden_layer_sizes': (20, 20, 20)}
 SVM_RBF,abalone,0.6338597570427403,{'SVM__alpha': 0.0031622776601683794, 'SVM__gamma_frac': 0.2, 'SVM__n_iter': 428}
+SVM_Lin,adult,0.807421404587182,{'SVM__alpha': 0.001, 'SVM__n_iter': 55}
+DT,adult,0.8036196664859824,{'DT__alpha': 0.0031622776601683794, 'DT__class_weight': 'balanced', 'DT__criterion': 'entropy'}
+SVM_Lin,cars,0.9007166746297182,{'SVM__alpha': 0.0001, 'SVM__n_iter': 1034}
+DT,cars,0.9555064500716675,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+Boost,adult,0.8197140474768848,{'Boost__base_estimator__alpha': 0.0031622776601683794, 'Boost__n_estimators': 30}
+KNN,adult,0.7566289728780821,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 4, 'KNN__weights': 'uniform'}
+Boost,cars,0.9649068322981366,{'Boost__base_estimator__alpha': 0.0316227766016838, 'Boost__n_estimators': 30}
+KNN,cars,0.9540969899665551,{'KNN__metric': 'manhattan', 'KNN__n_neighbors': 10, 'KNN__weights': 'distance'}
+ANN,adult,0.758239053002892,{'MLP__activation': 'relu', 'MLP__alpha': 0.0001, 'MLP__hidden_layer_sizes': (1,)}
+ANN,cars,0.5159937888198759,{'MLP__activation': 'relu', 'MLP__alpha': 0.01, 'MLP__hidden_layer_sizes': (18,)}
+SVM_RBF,adult,0.8066193596894063,{'SVM__alpha': 0.0031622776601683794, 'SVM__gamma_frac': 0.15000000000000002, 'SVM__n_iter': 55}
+SVM_RBF,cars,0.9856585443541965,{'SVM__alpha': 0.0001, 'SVM__gamma_frac': 0.8, 'SVM__n_iter': 1034}
+DT,cars,0.9555064500716675,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+DT,cars,0.9555064500716675,{'DT__alpha': 0, 'DT__class_weight': 'balanced', 'DT__criterion': 'gini'}
+Boost,cars,0.9649068322981366,{'Boost__base_estimator__alpha': 0.0316227766016838, 'Boost__n_estimators': 30}
+ANN,cars,0.5159937888198759,{'MLP__activation': 'relu', 'MLP__alpha': 0.01, 'MLP__hidden_layer_sizes': (18,)}
+SVM_Lin,cars,0.9007166746297182,{'SVM__alpha': 0.0001, 'SVM__n_iter': 1034}
+SVM_RBF,cars,0.9856585443541965,{'SVM__alpha': 0.0001, 'SVM__gamma_frac': 0.8, 'SVM__n_iter': 1034}

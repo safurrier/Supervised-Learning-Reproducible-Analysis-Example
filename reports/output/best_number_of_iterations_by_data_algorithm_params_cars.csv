@@ -1,0 +1,17 @@
+Dataset,Algorithm,Hyperparameters,Best_Number_of_Iterations/Estimators
+cars,ANN,Best_Params,1024
+cars,Boost,Best_Params,30
+cars,SVMLin,Best_Params,1034
+cars,SVMRBF,Best_Params,55
+madelon,ANN,Best_Params,32
+madelon,Boost,Best_Params,5
+madelon,SVMLin,Best_Params,16
+madelon,SVMRBF,Best_Params,128
+cars,ANN,No_Regularization,1024
+cars,Boost,No_Regularization,1
+cars,SVMLin,No_Regularization,
+cars,SVMRBF,No_Regularization,49
+madelon,ANN,No_Regularization,32
+madelon,Boost,No_Regularization,1
+madelon,SVMLin,No_Regularization,200
+madelon,SVMRBF,No_Regularization,100

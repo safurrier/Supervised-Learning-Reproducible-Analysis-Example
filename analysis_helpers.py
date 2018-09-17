@@ -170,7 +170,13 @@ def tidy_timing_curve(timing_df, algorithm=None, dataset=None):
     """Convert a learning curve df into tidy format"""
 
     tidy_timing_df = timing_df.copy()
-    tidy_timing_df.columns = ['Training_Fractional_Size', 'Test', 'Train']
+    # Add first column name
+    #tidy_timing_df.iloc[:, 0].name = 'Training_Fractional_Size'
+    tidy_timing_df = tidy_timing_df.rename(columns={tidy_timing_df.columns[0]: 'Training_Fractional_Size'})
+    cols = tidy_timing_df.columns.values.tolist()
+    # Capitalize
+    tidy_timing_df.columns = [col[0].upper() + col[1:] for col in cols]
+    #tidy_timing_df.columns = ['Training_Fractional_Size', 'Train', 'Test']
     # Originally the first column is the test size
     # So setting the training size is just 1 - this
     tidy_timing_df['Training_Fractional_Size'] = (1 - tidy_timing_df['Training_Fractional_Size']).round(2)
@@ -241,7 +247,12 @@ def get_optimal_iteration_number(df_dict, params='best'):
         if key.startswith('ITER_base'):
             # Add to relevant dfs
             iterations_df_dict[key] = df
-
+    
+    # Set best iteration equal to None 
+    # to begin with
+    
+    OF_best_iteration = None
+    best_iteration = None
     for key, df in iterations_df_dict.items():
         key_splits = key.split('_')
         # Check if it's an overfitting df
@@ -263,9 +274,17 @@ def get_optimal_iteration_number(df_dict, params='best'):
             best_iteration = df.sort_values(by='rank_test_score').loc[:, iter_column].values[0][0]
     
     if params=='best':
-        return best_iteration
+        if best_iteration:
+            return best_iteration
+        else:
+            return np.nan
     elif params=='overfitting':
-        return OF_best_iteration
+        # If no best iteration was able to be pulled, 
+        # return a NaN
+        if OF_best_iteration:
+            return OF_best_iteration
+        else:
+            return np.nan
         
 def get_all_best_iters(fpath, datasets=None, algorithms=None, tidy=True):
     from itertools import product
