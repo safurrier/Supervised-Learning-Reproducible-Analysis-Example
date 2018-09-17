@@ -39,9 +39,9 @@ def DTpruningVSnodes(clf,alphas,trgX,trgY,dataset):
     
 def main():
     # Load Data       
-    abalone = pd.read_hdf('data/processed/datasets.hdf','abalone')        
-    abaloneX = abalone.drop('Class',1).copy().values
-    abaloneY = abalone['Class'].copy().values
+    cars = pd.read_hdf('data/processed/datasets.hdf','cars')        
+    carsX = cars.drop('Class',1).copy().values
+    carsY = cars['Class'].copy().values
 
 
 
@@ -52,7 +52,7 @@ def main():
 
 
 
-    abalone_trgX, abalone_tstX, abalone_trgY, abalone_tstY = ms.train_test_split(abaloneX, abaloneY, test_size=0.3, random_state=0,stratify=abaloneY)     
+    cars_trgX, cars_tstX, cars_trgY, cars_tstY = ms.train_test_split(carsX, carsY, test_size=0.3, random_state=0,stratify=carsY)     
     madelon_trgX, madelon_tstX, madelon_trgY, madelon_tstY = ms.train_test_split(madelonX, madelonY, test_size=0.3, random_state=0,stratify=madelonY)     
 
     # Search for good alphas
@@ -73,22 +73,22 @@ def main():
     params = {'DT__criterion':['gini','entropy'],'DT__alpha':alphas,'DT__class_weight':['balanced']}
 
     madelon_clf = basicResults(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,params,'DT','madelon')        
-    abalone_clf = basicResults(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,params,'DT','abalone')        
+    cars_clf = basicResults(pipeA,cars_trgX,cars_trgY,cars_tstX,cars_tstY,params,'DT','cars')        
 
 
     #madelon_final_params = {'DT__alpha': -0.00031622776601683794, 'DT__class_weight': 'balanced', 'DT__criterion': 'entropy'}
-    #abalone_final_params = {'class_weight': 'balanced', 'alpha': 0.0031622776601683794, 'criterion': 'entropy'}
+    #cars_final_params = {'class_weight': 'balanced', 'alpha': 0.0031622776601683794, 'criterion': 'entropy'}
     madelon_final_params = madelon_clf.best_params_
-    abalone_final_params = abalone_clf.best_params_
+    cars_final_params = cars_clf.best_params_
 
     pipeM.set_params(**madelon_final_params)
     makeTimingCurve(madelonX,madelonY,pipeM,'DT','madelon')
-    pipeA.set_params(**abalone_final_params)
-    makeTimingCurve(abaloneX,abaloneY,pipeA,'DT','abalone')
+    pipeA.set_params(**cars_final_params)
+    makeTimingCurve(carsX,carsY,pipeA,'DT','cars')
 
 
     DTpruningVSnodes(pipeM,alphas,madelon_trgX,madelon_trgY,'madelon')
-    DTpruningVSnodes(pipeA,alphas,abalone_trgX,abalone_trgY,'abalone')
+    DTpruningVSnodes(pipeA,alphas,cars_trgX,cars_trgY,'cars')
     
 if __name__ == "__main__":
     main()

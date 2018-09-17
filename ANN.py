@@ -18,9 +18,9 @@ warnings.simplefilter(action='ignore', category=DataConversionWarning)
 
 def main():
 
-    abalone = pd.read_hdf('data/processed/datasets.hdf','abalone')        
-    abaloneX = abalone.drop('Class',1).copy().values
-    abaloneY = abalone['Class'].copy().values
+    cars = pd.read_hdf('data/processed/datasets.hdf','cars')        
+    carsX = cars.drop('Class',1).copy().values
+    carsY = cars['Class'].copy().values
 
     madelon = pd.read_hdf('data/processed/datasets.hdf','madelon')        
     madelonX = madelon.drop('Class',1).copy().values
@@ -28,7 +28,7 @@ def main():
 
 
 
-    abalone_trgX, abalone_tstX, abalone_trgY, abalone_tstY = ms.train_test_split(abaloneX, abaloneY, test_size=0.3, random_state=0,stratify=abaloneY)     
+    cars_trgX, cars_tstX, cars_trgY, cars_tstY = ms.train_test_split(carsX, carsY, test_size=0.3, random_state=0,stratify=carsY)     
     madelon_trgX, madelon_tstX, madelon_trgY, madelon_tstY = ms.train_test_split(madelonX, madelonY, test_size=0.3, random_state=0,stratify=madelonY)     
 
     pipeA = Pipeline([('Scale',StandardScaler()),
@@ -41,27 +41,27 @@ def main():
                      ('Cull4',SelectFromModel(RandomForestClassifier(random_state=4),threshold='median')),
                      ('MLP',MLPClassifier(max_iter=2000,early_stopping=True,random_state=55))])
 
-    d = abaloneX.shape[1]
-    hiddens_abalone = [(h,)*l for l in [1,2,3] for h in [d,d//2,d*2]]
+    d = carsX.shape[1]
+    hiddens_cars = [(h,)*l for l in [1,2,3] for h in [d,d//2,d*2]]
     alphas = [10**-x for x in np.arange(-1,5.01,1/2)]
     alphasM = [10**-x for x in np.arange(-1,9.01,1/2)]
     d = madelonX.shape[1]
     d = d//(2**4)
     hiddens_madelon = [(h,)*l for l in [1,2,3] for h in [d,d//2,d*2]]
-    params_abalone = {'MLP__activation':['relu','logistic'],'MLP__alpha':alphas,'MLP__hidden_layer_sizes':hiddens_abalone}
+    params_cars = {'MLP__activation':['relu','logistic'],'MLP__alpha':alphas,'MLP__hidden_layer_sizes':hiddens_cars}
     params_madelon = {'MLP__activation':['relu','logistic'],'MLP__alpha':alphas,'MLP__hidden_layer_sizes':hiddens_madelon}
     #
     madelon_clf = basicResults(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,params_madelon,'ANN','madelon')        
-    abalone_clf = basicResults(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,params_abalone,'ANN','abalone')        
+    cars_clf = basicResults(pipeA,cars_trgX,cars_trgY,cars_tstX,cars_tstY,params_cars,'ANN','cars')        
 
 
     #madelon_final_params = {'MLP__hidden_layer_sizes': (500,), 'MLP__activation': 'logistic', 'MLP__alpha': 10.0}
-    #abalone_final_params ={'MLP__hidden_layer_sizes': (28, 28, 28), 'MLP__activation': 'logistic', 'MLP__alpha': 0.0031622776601683794}
+    #cars_final_params ={'MLP__hidden_layer_sizes': (28, 28, 28), 'MLP__activation': 'logistic', 'MLP__alpha': 0.0031622776601683794}
 
     madelon_final_params = madelon_clf.best_params_
-    abalone_final_params =abalone_clf.best_params_
-    abalone_OF_params =abalone_final_params.copy()
-    abalone_OF_params['MLP__alpha'] = 0
+    cars_final_params =cars_clf.best_params_
+    cars_OF_params =cars_final_params.copy()
+    cars_OF_params['MLP__alpha'] = 0
     madelon_OF_params =madelon_final_params.copy()
     madelon_OF_params['MLP__alpha'] = 0
 
@@ -71,23 +71,23 @@ def main():
     pipeM.set_params(**madelon_final_params)  
     pipeM.set_params(**{'MLP__early_stopping':False})                   
     makeTimingCurve(madelonX,madelonY,pipeM,'ANN','madelon')
-    pipeA.set_params(**abalone_final_params)
+    pipeA.set_params(**cars_final_params)
     pipeA.set_params(**{'MLP__early_stopping':False})                  
-    makeTimingCurve(abaloneX,abaloneY,pipeA,'ANN','abalone')
+    makeTimingCurve(carsX,carsY,pipeA,'ANN','cars')
 
     pipeM.set_params(**madelon_final_params)
     pipeM.set_params(**{'MLP__early_stopping':False})               
     iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN','madelon')        
-    pipeA.set_params(**abalone_final_params)
+    pipeA.set_params(**cars_final_params)
     pipeA.set_params(**{'MLP__early_stopping':False})                  
-    iterationLC(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN','abalone')                
+    iterationLC(pipeA,cars_trgX,cars_trgY,cars_tstX,cars_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN','cars')                
 
     pipeM.set_params(**madelon_OF_params)
     pipeM.set_params(**{'MLP__early_stopping':False})                  
     iterationLC(pipeM,madelon_trgX,madelon_trgY,madelon_tstX,madelon_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN_OF','madelon')        
-    pipeA.set_params(**abalone_OF_params)
+    pipeA.set_params(**cars_OF_params)
     pipeA.set_params(**{'MLP__early_stopping':False})               
-    iterationLC(pipeA,abalone_trgX,abalone_trgY,abalone_tstX,abalone_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN_OF','abalone')                
+    iterationLC(pipeA,cars_trgX,cars_trgY,cars_tstX,cars_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN_OF','cars')                
 
 if __name__ == "__main__":
     main()

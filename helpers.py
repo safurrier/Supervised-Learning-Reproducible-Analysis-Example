@@ -27,7 +27,7 @@ def basicResults(clfObj,trgX,trgY,tstX,tstY,params,clf_type=None,dataset=None):
     with open('reports/output/test results.csv','a') as f:
         f.write('{},{},{},{}\n'.format(clf_type,dataset,test_score,cv.best_params_))    
     N = trgY.shape[0]    
-    curve = ms.learning_curve(cv.best_estimator_,trgX,trgY,cv=5,train_sizes=[50,100]+[int(N*x/10) for x in range(1,8)],verbose=10,scoring=scorer)
+    curve = ms.learning_curve(cv.best_estimator_,trgX,trgY,cv=5,train_sizes=[int(N*x/10) for x in range(1,8)],verbose=10,scoring=scorer)
     curve_train_scores = pd.DataFrame(index = curve[0],data = curve[1])
     curve_test_scores  = pd.DataFrame(index = curve[0],data = curve[2])
     curve_train_scores.to_csv('reports/output/{}_{}_LC_train.csv'.format(clf_type,dataset))
