@@ -1,0 +1,176 @@
+Row Labels,Average of mean_test_score
+distance,
+1,
+chebyshev,0.890316112
+euclidean,0.917359139
+manhattan,0.917359139
+1 Total,0.908344797
+4,
+chebyshev,0.812287729
+euclidean,0.923627359
+manhattan,0.916492062
+4 Total,0.884135716
+7,
+chebyshev,0.765412417
+euclidean,0.904712644
+manhattan,0.911711515
+7 Total,0.860612192
+10,
+chebyshev,0.700968382
+euclidean,0.901320323
+manhattan,0.924699229
+10 Total,0.842329311
+13,
+chebyshev,0.682067528
+euclidean,0.890308758
+manhattan,0.915654907
+13 Total,0.829343731
+16,
+chebyshev,0.642114522
+euclidean,0.870452689
+manhattan,0.906952897
+16 Total,0.806506702
+19,
+chebyshev,0.62873277
+euclidean,0.867529704
+manhattan,0.898362514
+19 Total,0.798208329
+22,
+chebyshev,0.618083126
+euclidean,0.852933745
+manhattan,0.880407526
+22 Total,0.783808132
+25,
+chebyshev,0.598979827
+euclidean,0.84783743
+manhattan,0.876043252
+25 Total,0.774286837
+28,
+chebyshev,0.600583268
+euclidean,0.825133567
+manhattan,0.866120711
+28 Total,0.763945848
+31,
+chebyshev,0.578904104
+euclidean,0.810764771
+manhattan,0.869616261
+31 Total,0.753095045
+34,
+chebyshev,0.54307795
+euclidean,0.796721214
+manhattan,0.855193353
+34 Total,0.731664173
+37,
+chebyshev,0.494999471
+euclidean,0.783713183
+manhattan,0.833734523
+37 Total,0.704149059
+40,
+chebyshev,0.46275602
+euclidean,0.766062908
+manhattan,0.824159997
+40 Total,0.684326309
+43,
+chebyshev,0.45129628
+euclidean,0.746242943
+manhattan,0.79628195
+43 Total,0.664607058
+46,
+chebyshev,0.421860837
+euclidean,0.730321763
+manhattan,0.798750979
+46 Total,0.650311193
+49,
+chebyshev,0.40469068
+euclidean,0.7010328
+manhattan,0.781991891
+49 Total,0.629238457
+distance Total,0.768759582
+uniform,
+1,
+chebyshev,0.890316112
+euclidean,0.917359139
+manhattan,0.917359139
+1 Total,0.908344797
+4,
+chebyshev,0.65458399
+euclidean,0.812934966
+manhattan,0.789163605
+4 Total,0.752227521
+7,
+chebyshev,0.652864608
+euclidean,0.824605364
+manhattan,0.801756685
+7 Total,0.759742219
+10,
+chebyshev,0.596753493
+euclidean,0.793605133
+manhattan,0.821312979
+10 Total,0.737223868
+13,
+chebyshev,0.603653626
+euclidean,0.781265029
+manhattan,0.785279962
+13 Total,0.723399539
+16,
+chebyshev,0.543698767
+euclidean,0.771930908
+manhattan,0.771979557
+16 Total,0.695869744
+19,
+chebyshev,0.579774988
+euclidean,0.770131986
+manhattan,0.768896397
+19 Total,0.70626779
+22,
+chebyshev,0.56995157
+euclidean,0.753594007
+manhattan,0.758355781
+22 Total,0.693967119
+25,
+chebyshev,0.531629492
+euclidean,0.745165553
+manhattan,0.747636731
+25 Total,0.674810592
+28,
+chebyshev,0.529145238
+euclidean,0.736026616
+manhattan,0.736234618
+28 Total,0.66713549
+31,
+chebyshev,0.514713745
+euclidean,0.710750843
+manhattan,0.709979907
+31 Total,0.645148165
+34,
+chebyshev,0.488148639
+euclidean,0.687413503
+manhattan,0.679800914
+34 Total,0.618454352
+37,
+chebyshev,0.447610909
+euclidean,0.673785265
+manhattan,0.664856521
+37 Total,0.595417565
+40,
+chebyshev,0.430345172
+euclidean,0.667502846
+manhattan,0.626684555
+40 Total,0.574844191
+43,
+chebyshev,0.42392675
+euclidean,0.636317574
+manhattan,0.607423137
+43 Total,0.555889154
+46,
+chebyshev,0.402922276
+euclidean,0.620239708
+manhattan,0.581243092
+46 Total,0.534801692
+49,
+chebyshev,0.352723379
+euclidean,0.567566188
+manhattan,0.543203181
+49 Total,0.487830916
+uniform Total,0.666551454
+Grand Total,0.717655518
