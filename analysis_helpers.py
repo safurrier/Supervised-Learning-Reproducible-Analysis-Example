@@ -35,7 +35,7 @@ class AlgorithmResults(object):
         
     @property
     def plot_learning_curve(self, 
-                            x=alt.X('Datapoints:Q'), 
+                            x=alt.X('Data_Points:Q'), 
                             y=alt.Y('CV_Mean:Q', scale=alt.Scale(domain=[0.0, 1.0])),
                            color=alt.Color('Split:N')):
         """ Plot the learning curve of the algorithm and dataset"""

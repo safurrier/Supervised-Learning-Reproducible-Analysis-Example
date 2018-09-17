@@ -51,7 +51,9 @@ analysis: data
 	$(PYTHON_INTERPRETER) Decision_Tree.py
 	$(PYTHON_INTERPRETER) KNN.py
 	$(PYTHON_INTERPRETER) SVM.py
-	
+plots: data    
+	$(PYTHON_INTERPRETER) make_plots.py	
+    
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
