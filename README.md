@@ -45,7 +45,7 @@ Project Organization
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   ├── figures        <- Generated graphics and figures to be used in analysis
-    │   ├── output         <- All model assessment outputs, including hyper parameter cv scores
+    │   └── output         <- All model assessment outputs, including hyper parameter cv scores
     |                         learning curves, timing curves, expressiveness curves, best 
     |                         number of iterations, final cv scores, etc.
     │
@@ -70,3 +70,7 @@ Project Organization
 
 
 --------
+Model training and evaluation done using pandas, numpy, and scikit-learn.
+Visualizations done with altair. 
+Code for model training and model evaluation adapted from Jonathan Tay (https://github.com/JonathanTay) 
+
