@@ -2,6 +2,7 @@ ml7641-assignment-one
 ==============================
 
 Assignment for supervised learning ML 7641 Fall 2018 assignment 1
+Author: Sean (Alex) Furrier
 
 To create the necesary conda env, run 
 
