@@ -79,12 +79,5 @@ target/
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# exclude data from source control by default
-#/data/
-#reports/data-profiling/*
-
 # Mac OS-specific storage files
 .DS_Store
-
-# datarobot utils
-src/utils/data_robot_utils.py
