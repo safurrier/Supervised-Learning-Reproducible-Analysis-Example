@@ -1,6 +1,6 @@
 Supervised-Learning-Reproducible-Analysis-Example
 ==============================
-Author: Sean (Alex) Furrier
+Author: Alex Furrier
 
 This is an example repo for a data science project focused
 on supervised learning. End analysis for the results can be 
@@ -59,7 +59,7 @@ Submission analysis is in top level folder in file 'analysis.pdf'
 Project Organization
 ------------
 
-    ├── sfurrier3-analysis.pdf           <- Project Analysis Submisson
+    ├── analysis.pdf           <- Project Analysis Submisson
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
@@ -82,10 +82,6 @@ Project Organization
 	|
     ├── setup_env.sh           <- Script to initiailize git repo, setup a conda virtual environment  
     │                         and install dependencies.
-    │
-    ├── src                <- Source code of various utilies for EDA, cleaning, analyzing etc. 
-    │   ├── __init__.py    <- Makes src a Python module
-    │   └── utils          <- Utility code for various purposes and packages
     │                 
     ├── helpers.py         <- Utility code for various purposes and packages
     ├── analysis_helpers.py<- Utility code for various analysis (mostly plotting)
