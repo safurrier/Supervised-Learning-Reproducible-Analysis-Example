@@ -6,12 +6,12 @@ This is an example repo for a data science project focused
 on supervised learning. End analysis for the results can be 
 found in the root folder under 'analysis.pdf'.
 
-This example takes two well known machine learning datasets from the
+This example takes datasets from the
 UCI machine learning lab repository and examines the performance of 
 five well known supervised learning models. The datasets provide 
 contrasting problems: one a high dimensional, low signal dataset 
 with continuous features (madelon) and the other a low dimensional,
-high signal dataset with multi-level categoric data. 
+high signal dataset with multi-level categoric data (cars). 
 
 
 The five algorithms examined are:
@@ -28,7 +28,7 @@ The five algorithms examined are:
 
 Each learner was implemented with sklearn and tuned with a hyperparameter
 search using 5 fold cross validation across a variety of potential values.
-The final parameters, performance, time complexity and expressiveness is
+The final parameters, performance, time complexity and expressiveness are
 examined. 
 
 To create the necesary conda env to reproduce the analysis, run 
@@ -36,7 +36,7 @@ To create the necesary conda env to reproduce the analysis, run
 > . ./setup_env.sh
 
 To run the pipeline cleaning and processing data before performing 5 
-fold cross validated grid search on the 6 algorithms and 2 datasets,
+fold cross validated grid search on the 5 algorithms and 2 datasets,
 learning curves, timing curves and expressiveness curves run:
 
 > make analysis
@@ -95,6 +95,8 @@ Project Organization
 
 --------
 Model training and evaluation done using pandas, numpy, and scikit-learn.
+
 Visualizations done with altair. 
+
 Code for model training and model evaluation adapted from Jonathan Tay (https://github.com/JonathanTay) 
 
