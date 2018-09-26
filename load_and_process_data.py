@@ -65,45 +65,45 @@ madelon_df.head()
 # In[127]:
 
 
-# cars_df = pd.read_csv('data/raw/cars/car.data.txt', header=None, 
-#                       names=[
-# "buying ", 
-# "maint", 
-# "doors", 
-# "persons", 
-# "lug_boot", 
-# "safety",
-#                           'class'
-#                       ])
-# cars_df.head()
+cars_df = pd.read_csv('data/raw/cars/car.data.txt', header=None, 
+                      names=[
+"buying ", 
+"maint", 
+"doors", 
+"persons", 
+"lug_boot", 
+"safety",
+                          'Class'
+                      ])
+cars_df.head()
 
 
-# In[88]:
+#In[88]:
 
 
-# # Changing to binary classification problem
-# # Acceptable, Good and Very Good all become the positive class 1
-# # Unacceptable is the negative class 0
-# cars_df['Class'] = cars_df['Class'].replace({'unacc':0,'acc':1,'vgood':2,'good':2})
+# Changing to binary classification problem
+# Acceptable, Good and Very Good all become the positive class 1
+# Unacceptable is the negative class 0
+cars_df['Class'] = cars_df['Class'].replace({'unacc':0,'acc':1,'vgood':2,'good':2})
 
 
-# In[89]:
+#In[89]:
 
 
-# cars_df['doors'] = cars_df['doors'].replace({'5more':5}).apply(pd.to_numeric)
+cars_df['doors'] = cars_df['doors'].replace({'5more':5}).apply(pd.to_numeric)
 
 
-# In[90]:
+#In[90]:
 
 
-# one_hot_columns = pd.get_dummies(cars_df.select_dtypes(include='object')).rename(columns=lambda x: x.replace('-','_'))
-# cars_df = pd.concat([one_hot_columns, cars_df[['doors','class']]], axis=1)
+one_hot_columns = pd.get_dummies(cars_df.select_dtypes(include='object')).rename(columns=lambda x: x.replace('-','_'))
+cars_df = pd.concat([one_hot_columns, cars_df[['doors','Class']]], axis=1)
 
 
-# In[124]:
+#In[124]:
 
 
-# cars_df.to_hdf('data/processed/datasets.hdf','cars',complib='blosc',complevel=9)
+cars_df.to_hdf('data/processed/datasets.hdf','cars',complib='blosc',complevel=9)
 
 
 # ## Load Income Data
@@ -188,29 +188,29 @@ madelon_df.head()
 # In[123]:
 
 
-column_names = ["Sex",
-"Length",
-"Diameter",
-"Height",
-"Whole weight",	
-"Shucked weight",
-"Viscera weight",
-"Shell weight",
-"Rings"]
-
-abalone_df = pd.read_csv('data/raw/abalone/abalone.txt', names=column_names)
-
-# Create classification problem based on Rings, which are a function of age (Age = 1.5 + Rings)
-#abalone_df['Class'] = np.where(abalone_df['Rings'] > 9, 1, 0) Binary Classification
-
-# Multilabel classification
-# Infants, Most prevalent age (9-10) before harvesting
-# Full adults
-abalone_df['Class'] = pd.cut(abalone_df['Rings'], bins=[-1, 8.9, 10.1, 100], labels=[0, 1, 2]).astype(int)
-
-# One hot encode gender and concat together
-abalone_df = pd.concat([pd.get_dummies(abalone_df['Sex'], prefix='Sex'), 
-                       abalone_df.drop(columns=['Sex', 'Rings'], axis=1)], axis=1)
-
-# Export data
-abalone_df.to_hdf('data/processed/datasets.hdf','abalone', format='table', complib='blosc',complevel=9)
+#column_names = ["Sex",
+#"Length",
+#"Diameter",
+#"Height",
+#"Whole weight",	
+#"Shucked weight",
+#"Viscera weight",
+#"Shell weight",
+#"Rings"]
+#
+#abalone_df = pd.read_csv('data/raw/abalone/abalone.txt', names=column_names)
+#
+## Create classification problem based on Rings, which are a function of age (Age = 1.5 + Rings)
+##abalone_df['Class'] = np.where(abalone_df['Rings'] > 9, 1, 0) Binary Classification
+#
+## Multilabel classification
+## Infants, Most prevalent age (9-10) before harvesting
+## Full adults
+#abalone_df['Class'] = pd.cut(abalone_df['Rings'], bins=[-1, 8.9, 10.1, 100], labels=[0, 1, 2]).astype(int)
+#
+## One hot encode gender and concat together
+#abalone_df = pd.concat([pd.get_dummies(abalone_df['Sex'], prefix='Sex'), 
+#                       abalone_df.drop(columns=['Sex', 'Rings'], axis=1)], axis=1)
+#
+## Export data
+#abalone_df.to_hdf('data/processed/datasets.hdf','abalone', format='table', complib='blosc',complevel=9)

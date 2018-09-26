@@ -53,7 +53,7 @@ RESULTS_PATH = 'reports/output/'
 
 #### MUST HAVE CHROMEDRIVER INSTALLED SOMEWHERE WTIH THIS POINTING TO IT
 # Set Driver for Exporting
-driver = webdriver.Chrome(r'C:\Users\afurrier\chromedriver.exe')
+driver = webdriver.Chrome(r'chromedriver.exe')
 
 
 # In[9]:
