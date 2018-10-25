@@ -1,4 +1,4 @@
-Supervised-Learning-Reproducible-Analysis-Example
+﻿Supervised-Learning-Reproducible-Analysis-Example
 ==============================
 Author: Alex Furrier
 
@@ -68,8 +68,6 @@ Project Organization
     │
     ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
     │                         description, e.g. `01.0-initial-data-exploration`.
-    │
-    ├── references         <- Assignment Info.
     │
     ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
     │   ├── figures        <- Generated graphics and figures to be used in analysis
